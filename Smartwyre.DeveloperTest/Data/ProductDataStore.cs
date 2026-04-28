@@ -8,5 +8,12 @@ public class ProductDataStore: IProductDataStore
     {
         // Access database to retrieve account, code removed for brevity 
         return new Product();
+        /*
+         // Example of returned product
+         return new Product
+        {
+            SupportedIncentives = SupportedIncentiveType.FixedCashAmount
+        };
+         */
     }
 }

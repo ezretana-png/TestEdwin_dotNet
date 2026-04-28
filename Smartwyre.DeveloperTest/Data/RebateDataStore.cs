@@ -8,6 +8,14 @@ public class RebateDataStore:IRebateDataStore
     {
         // Access database to retrieve account, code removed for brevity 
         return new Rebate();
+        /*
+         // Example of returned rebate
+         return new Rebate
+        {
+            Incentive = IncentiveType.FixedCashAmount,
+            Amount = 100m
+        };
+         */
     }
 
     public bool StoreCalculationResult(Rebate account, decimal rebateAmount)
