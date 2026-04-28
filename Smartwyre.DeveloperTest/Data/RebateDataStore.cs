@@ -10,8 +10,10 @@ public class RebateDataStore:IRebateDataStore
         return new Rebate();
     }
 
-    public void StoreCalculationResult(Rebate account, decimal rebateAmount)
+    public bool StoreCalculationResult(Rebate account, decimal rebateAmount)
     {
         // Update account in database, code removed for brevity
+
+        return true;
     }
 }
