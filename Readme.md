@@ -1,46 +1,47 @@
-# Smartwyre Developer Test Instructions
+# Smartwyre Developer Test — .NET Refactoring Exercise
 
-You have been selected to complete our candidate coding exercise. Please follow the directions in this readme.
+A .NET refactoring exercise applying SOLID principles and clean architecture patterns. The original code was refactored to improve maintainability, testability, and adherence to object-oriented design principles.
 
-Clone, **DO NOT FORK**, this repository to your account on the online Git resource of your choosing (GitHub, BitBucket, GitLab, etc.). Your solution should retain previous commit history and you should utilize best practices for committing your changes to the repository.
+## SOLID Principles Applied
 
-You are welcome to use whatever tools you normally would when coding — including documentation, libraries, frameworks, or AI tools (such as ChatGPT or Copilot).
+| Principle | Application |
+|-----------|------------|
+| **S**ingle Responsibility | Each class has a single, well-defined purpose |
+| **O**pen / Closed | New rebate calculators can be added without modifying existing code |
+| **L**iskov Substitution | Derived types are interchangeable with base types |
+| **I**nterface Segregation | Small, focused interfaces avoid unnecessary dependencies |
+| **D**ependency Inversion | High-level modules depend on abstractions, not concrete implementations |
 
-However, it is important that you fully understand your solution. As part of the interview process, we will review your code with you in detail. You should be able to:
+## Architecture Overview
 
-- Explain the design choices you made.
-- Walk us through how your solution works.
-- Make modifications or extensions to your code during the review.
+The solution follows a stratified design with clear separation between business logic, data access, and the public API surface. The refactored structure decouples rebate calculations from the main processing pipeline via strategy pattern and dependency injection.
 
-Please note: if your submission appears to have been generated entirely by an AI agent or another third party, without your own understanding or contribution, it will not meet our evaluation criteria.
+```
+Presentation Layer --> Application Layer --> Domain Layer --> Infrastructure Layer
+```
 
-# The Exercise
+- **Domain**: Core entities and calculation interfaces
+- **Application**: Orchestration and DTOs
+- **Infrastructure**: Data access and external concerns
+- **Tests**: Unit tests with mocks
 
-In the 'RebateService.cs' file you will find a method for calculating a rebate. At a high level the steps for calculating a rebate are:
+## How to Run Tests
 
- 1. Lookup the rebate that the request is being made against.
- 2. Lookup the product that the request is being made against.
- 2. Check that the rebate and request are valid to calculate the incentive type rebate.
- 3. Store the rebate calculation.
+```bash
+# Restore dependencies
+dotnet restore
 
-What we'd like you to do is refactor the code with the following things in mind:
+# Run all tests
+dotnet test
 
- - Adherence to SOLID principles
- - Testability
- - Readability
- - Currently there are 3 known incentive types. In the future the business will want to add many more incentive types. Your solution should make it easy for developers to add new incentive types in the future.
+# Run tests with verbose output
+dotnet test --verbosity detailed
+```
 
-We’d also like you to 
- - Add some unit tests to the Smartwyre.DeveloperTest.Tests project to show how you would test the code that you’ve produced 
- - Run the RebateService from the Smartwyre.DeveloperTest.Runner console application accepting inputs (either via command line arguments or via prompts is fine)
+## Tech Stack
 
-The only specific "rules" are:
-
-- The solution must build
-- All tests must pass
-
-You are free to use any frameworks/NuGet packages that you see fit. You should plan to spend around 1 hour completing the exercise.
-
-Feel free to use code comments to describe your changes. You are also welcome to update this readme with any important details for us to consider.
-
-Once you have completed the exercise either ensure your repository is available publicly or contact the hiring manager to set up a private share.
+- **.NET** — Runtime and base class library
+- **C#** — Primary language
+- **xUnit / NUnit** — Test framework
+- **Moq** — Mocking framework for unit tests
+- **Dependency Injection** — Built-in .NET DI container
